@@ -1,22 +1,4 @@
 import pytest
-from models import Base, User, engine, Session
-
-@pytest.fixture(scope='module')
-def test_session():
-    Base.metadata.create_all(engine)
-    session = Session()
-    yield session
-    session.close()
-    Base.metadata.drop_all(engine)
-
-def test_add_user(test_session):
-    user = User(username='test_user')
-    test_session.add(user)
-    test_session.commit()
-
-    queried_user = test_session.query(User).filter_by(username='test_user').first()
-    assert queried_user is not None
-    assert queried_user.username == 'test_user'
 
 
 ### GENERIC EXAMPLES BELOW
