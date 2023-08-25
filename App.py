@@ -6,11 +6,27 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://username:password@localhos
 db = SQLAlchemy(app)
 
 
+def init():
+    load_dotenv()
+
 class Media(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     media_name = db.Column(db.String(150), nullable=False)
     media_url = db.Column(db.String(500), nullable=False)
     tag = db.Column(db.String(50), nullable=False)
+
+@app.route('/add_media', methods=['POST'])
+def add_media():
+    data = request.json
+    new_media = Media(
+        media_name=data['media_name'],
+        media_url=data['media_url'],
+        tag=data['tag']
+    )
+    db.session.add(new_media)
+    db.session.commit()
+    return jsonify({"message": "Media added successfully!"}), 201
+
 
 with app.app_context():
     db.create_all()
