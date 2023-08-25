@@ -17,7 +17,6 @@ class Tags:
         self.password = os.environ.get("POSTGRES_PASSWORD")
         self.postgres_url = f"postgresql://{self.user}:{self.password}@{self.host}:{self.port}/{self.db_name}"
 
-        
     # SQLAlchemy main function
     def main(self):
         engine = create_engine('postgresql://username:password@localhost/dbname')
