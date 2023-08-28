@@ -8,7 +8,7 @@ PORT = os.environ.get("POSTGRES_PORT")
 USER = os.environ.get("POSTGRES_USER")
 quoted_password = quote_plus(os.environ.get("POSTGRES_PASSWORD"))
 PASSWORD = quoted_password
-POSTGRES_URL_STEM = f"postgresql://{USER}:{PASSWORD}@{HOST}:{PORT}/"
+POSTGRES_URL_BASE = f"postgresql://{USER}:{PASSWORD}@{HOST}:{PORT}"
 
 class Config:
     DEBUG = False
@@ -17,21 +17,21 @@ class Config:
 
 class TestConfig(Config):
     TESTING = True
-    POSTGRES_URL = POSTGRES_URL_STEM + "testDB"
+    POSTGRES_URL = POSTGRES_URL_BASE + "/testDB"
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    POSTGRES_URL = POSTGRES_URL_STEM + "developmentDB"
+    POSTGRES_URL = POSTGRES_URL_BASE + "/developmentDB"
 
 class StageConfig(Config):
-    POSTGRES_URL = POSTGRES_URL_STEM + "stageDB"
+    POSTGRES_URL = POSTGRES_URL_BASE + "/stageDB"
 
 class ProductionConfig(Config):
-    POSTGRES_URL = POSTGRES_URL_STEM + "productionDB"
+    POSTGRES_URL = POSTGRES_URL_BASE + "/productionDB"
 
 class LocalTestConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = "sqlite:///local_test.db"  # SQLite URI for local testing
+    LOCAL_SQLITE_URL = "sqlite:///local_test.db"  # SQLite URI for local testing
 
 # Dictionary to map the environment name to the config class
 configurations = {
