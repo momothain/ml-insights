@@ -19,7 +19,6 @@ def create_app(env='test_local'):
     
     return app
 
-
 def main():
     parser = argparse.ArgumentParser(description="ML Data Processing App")
     parser.add_argument("-e", choices=configurations.keys(), default="test_local", help="Choose an environment: ")
