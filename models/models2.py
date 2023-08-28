@@ -1,5 +1,8 @@
+# <models.py>
 from flask_sqlalchemy import SQLAlchemy
 from app import db
+
+db = SQLAlchemy()
 
 # store .mp4 together? = media URLs 
 class Tag(db.Model):
@@ -43,3 +46,4 @@ ad_cluster = db.Table('ad_cluster',
     db.Column('ad_id', db.Integer, db.ForeignKey('ad.id'), primary_key=True),
     db.Column('cluster_id', db.Integer, db.ForeignKey('cluster.id'), primary_key=True)
 )
+# </models.py>

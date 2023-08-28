@@ -1,6 +1,8 @@
 import os
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
-import quote_plus
+from urllib.parse import quote_plus
 
 load_dotenv()
 HOST = os.environ.get("POSTGRES_HOST")
@@ -35,10 +37,11 @@ class LocalTestConfig(Config):
 
 # Dictionary to map the environment name to the config class
 configurations = {
+    'local_test': LocalTestConfig,
     'test': TestConfig,
     'development': DevelopmentConfig,
     'stage': StageConfig,
     'production': ProductionConfig,
-    'local_test': LocalTestConfig,  # Add the local test configuration
     'default': TestConfig
 }
+

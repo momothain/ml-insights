@@ -1,28 +1,43 @@
+# <app.py>
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from config import configurations
+import argparse
+from models.models2 import db # importing db here
+# from routes import *
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test-app.db'
-db = SQLAlchemy(app)
+def create_app(env):
+    app = Flask(__name__)
+    app.config.from_object(configurations[env])
+    
+    # Initialize the SQLAlchemy extension with the created app
+    db.init_app(app)  # initialize db with app here
+    
+    # Create database tables
+    with app.app_context():  # This ensures the app context is pushed before using db
+        db.create_all()
+    
+    return app
 
-# Import models and routes
-from models.models2 import *
-from routes import *
 
-db.create_all()
+def main():
+    parser = argparse.ArgumentParser(description="ML Data Processing App")
+    parser.add_argument("config", choices=configurations.keys(), help="Choose a configuration: ")
+    
+    args = parser.parse_args()
+    
+    config_key = args.config
+    env = configurations[config_key]
+    
+    # Create the app and db instances
+    app, db = create_app(env)
+    
+    # Now you can use the app and db instances for further configuration or operations
+    print(f"Selected configuration: {config_key}")
+    
+    # Run the Flask app
+    app.run()
 
 if __name__ == '__main__':
-    app.run()
-    
-    # TODO: Fetch data from media and ad (campaign) tables
-    
-    # TODO: ml insights API Code here
-    ## prahsanhta and metao
-    
-    # TODO: Data cleaning / preprocessing
-    
-    # TODO: update tags tables
-    
-    # TODO: await GET request for URL
-    # TODO: schedule request check for any media.is_processed=0
-
+    main()
+# </app.py>
