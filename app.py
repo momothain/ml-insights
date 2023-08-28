@@ -3,10 +3,10 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from config import configurations
 import argparse
-from models.models2 import db # importing db here
+from models.models import db # importing db here
 # from routes import *
 
-def create_app(env):
+def create_app(env='test_local'):
     app = Flask(__name__)
     app.config.from_object(configurations[env])
     
@@ -22,18 +22,17 @@ def create_app(env):
 
 def main():
     parser = argparse.ArgumentParser(description="ML Data Processing App")
-    parser.add_argument("config", choices=configurations.keys(), help="Choose a configuration: ")
-    
+    parser.add_argument("-e", choices=configurations.keys(), default="test_local", help="Choose an environment: ")
+
     args = parser.parse_args()
     
-    config_key = args.config
-    env = configurations[config_key]
+    env = args.e
     
     # Create the app and db instances
-    app, db = create_app(env)
+    app = create_app(env)
     
     # Now you can use the app and db instances for further configuration or operations
-    print(f"Selected configuration: {config_key}")
+    print(f"Selected environment: {env}")
     
     # Run the Flask app
     app.run()

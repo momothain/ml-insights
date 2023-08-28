@@ -16,28 +16,33 @@ class Config:
     DEBUG = False
     TESTING = False
     SECRET_KEY = os.environ.get('SECRET_KEY', 'my_precious')
+    
+class TestLocalConfig(Config):
+    TESTING = True
+    #LOCAL_SQLITE_URL
+    SQLALCHEMY_DATABASE_URI = "sqlite:///local_test.db"  
 
 class TestConfig(Config):
     TESTING = True
-    POSTGRES_URL = POSTGRES_URL_BASE + "/testDB"
+    # POSTGRES_URL
+    SQLALCHEMY_DATABASE_URI = POSTGRES_URL_BASE + "/testDB"
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    POSTGRES_URL = POSTGRES_URL_BASE + "/developmentDB"
+    # POSTGRES_URL 
+    SQLALCHEMY_DATABASE_URI = POSTGRES_URL_BASE + "/developmentDB"
 
 class StageConfig(Config):
-    POSTGRES_URL = POSTGRES_URL_BASE + "/stageDB"
+    # POSTGRES_URL 
+    SQLALCHEMY_DATABASE_URI = POSTGRES_URL_BASE + "/stageDB"
 
 class ProductionConfig(Config):
-    POSTGRES_URL = POSTGRES_URL_BASE + "/productionDB"
-
-class LocalTestConfig(Config):
-    TESTING = True
-    LOCAL_SQLITE_URL = "sqlite:///local_test.db"  # SQLite URI for local testing
+    # POSTGRES_URL 
+    SQLALCHEMY_DATABASE_URI = POSTGRES_URL_BASE + "/productionDB"
 
 # Dictionary to map the environment name to the config class
 configurations = {
-    'local_test': LocalTestConfig,
+    'test_local': TestLocalConfig,
     'test': TestConfig,
     'development': DevelopmentConfig,
     'stage': StageConfig,
