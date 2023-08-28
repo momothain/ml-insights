@@ -29,7 +29,7 @@ class StageConfig(Config):
 class ProductionConfig(Config):
     POSTGRES_URL = POSTGRES_URL_STEM + "productionDB"
 
-class LocalTestConfig(Config):
+class TestLocalConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = "sqlite:///local_test.db"  # SQLite URI for local testing
 
@@ -39,6 +39,6 @@ configurations = {
     'development': DevelopmentConfig,
     'stage': StageConfig,
     'production': ProductionConfig,
-    'local_test': LocalTestConfig,  # Add the local test configuration
+    'test_local': TestLocalConfig,  # Add the local test configuration
     'default': TestConfig
 }

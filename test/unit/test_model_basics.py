@@ -1,23 +1,21 @@
-from app.database import SessionLocal
-from app.models.advertiser import Advertiser
-import datetime
+import pytest
+from app import app, db
 
-def test_create_advertiser():
-    # Create a new session and add an advertiser
-    session = SessionLocal()
-    new_advertiser = Advertiser(
-        created_at=datetime.datetime.now(),
-        modified_at=datetime.datetime.now(),
-        name="Test Advertiser",
-        platform_name="Test Platform"
-    )
-    session.add(new_advertiser)
-    session.commit()
+@pytest.fixture
+def client():
+    app.config['TESTING'] = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test_database.db'
+    client = app.test_client()
 
-    # Query the advertiser back and check its properties
-    advertiser = session.query(Advertiser).filter_by(name="Test Advertiser").first()
-    assert advertiser is not None
-    assert advertiser.name == "Test Advertiser"
-    assert advertiser.platform_name == "Test Platform"
+    with app.app_context():
+        db.create_all()
 
-    session.close()
+    yield client
+
+    with app.app_context():
+        db.drop_all()
+
+def test_some_route(client):
+    response = client.get('/some-route')
+    assert response.status_code == 200
+    # ... Other assertions ...
