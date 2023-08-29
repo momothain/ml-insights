@@ -1,10 +1,11 @@
+# <test_models.py>
 import os
 import pytest
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 # Import your models here (e.g., Tag, TagCategory, etc.)
-from app import Tag, TagCategory, Cluster, Ad
 from config import TestLocalConfig  # Import your TestConfig class
+from models.models import * # importing db here
 
 # Define your test cases using pytest
 def test_example():
@@ -60,3 +61,4 @@ def test_create_and_query_ad(app):
         
         queried_ad = Ad.query.first()
         assert queried_ad is not None
+# </test_models.py>
