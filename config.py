@@ -1,3 +1,4 @@
+# <config.py>
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -21,25 +22,25 @@ class TestLocalConfig(Config):
     TESTING = True
     #LOCAL_SQLITE_URL
     SQLALCHEMY_DATABASE_URI = "sqlite:///local_test.db"  
-
+    
 class TestConfig(Config):
     TESTING = True
     # POSTGRES_URL
     SQLALCHEMY_DATABASE_URI = POSTGRES_URL_BASE + "/testDB"
-
+    
 class DevelopmentConfig(Config):
     DEBUG = True
     # POSTGRES_URL 
     SQLALCHEMY_DATABASE_URI = POSTGRES_URL_BASE + "/developmentDB"
-
+    
 class StageConfig(Config):
     # POSTGRES_URL 
     SQLALCHEMY_DATABASE_URI = POSTGRES_URL_BASE + "/stageDB"
-
+    
 class ProductionConfig(Config):
     # POSTGRES_URL 
     SQLALCHEMY_DATABASE_URI = POSTGRES_URL_BASE + "/productionDB"
-
+    
 # Dictionary to map the environment name to the config class
 configurations = {
     'test_local': TestLocalConfig,
