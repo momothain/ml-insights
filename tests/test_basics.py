@@ -6,7 +6,7 @@ from models.models import db, Tag, TagCategory, Cluster, Ad
 # Create a fixture for the app
 @pytest.fixture(scope='module')
 def test_app():
-    app = create_app(env='test')
+    app = create_app(env='test_local')
     with app.app_context():
         yield app
 

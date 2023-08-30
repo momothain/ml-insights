@@ -14,8 +14,7 @@ def load_postgres_url_from_env():
     HOST = os.environ.get("POSTGRES_HOST")
     PORT = os.environ.get("POSTGRES_PORT")
     USER = os.environ.get("POSTGRES_USER")
-    quoted_password = quote_plus(os.environ.get("POSTGRES_PASSWORD"))
-    PASSWORD = quoted_password
+    PASSWORD = quote_plus(os.environ.get("POSTGRES_PASSWORD"))
     POSTGRES_URL_BASE = f"postgresql://{USER}:{PASSWORD}@{HOST}:{PORT}"
     return POSTGRES_URL_BASE
     
