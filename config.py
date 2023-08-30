@@ -1,6 +1,6 @@
 # <config.py>
 import os
-from utility import load_postgres_url_from_env, check_virtualenv, check_dependencies
+from utility import load_postgres_url_from_env, check_virtualenv#, check_dependencies
 
 
 REQUIREMENTS_FILE = 'requirements.txt'

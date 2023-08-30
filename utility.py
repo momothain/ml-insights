@@ -19,22 +19,22 @@ def load_postgres_url_from_env():
     return POSTGRES_URL_BASE
     
 import sys
-import pkg_resources
+# import pkg_resources
 
 def check_virtualenv():
     if hasattr(sys, 'real_prefix') or (hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix):
         return True
     return False
 
-def check_dependencies(requirements_file):
-    required_packages = fetch_required_packages(requirements_file)
-    installed_packages = [pkg.key for pkg in pkg_resources.working_set]
+# def check_dependencies(requirements_file):
+#     required_packages = fetch_required_packages(requirements_file)
+#     installed_packages = [pkg.key for pkg in pkg_resources.working_set]
     
-    missing_packages = [pkg for pkg in required_packages if pkg not in installed_packages]
+#     missing_packages = [pkg for pkg in required_packages if pkg not in installed_packages]
     
-    if missing_packages:
-        return missing_packages
-    return None
+#     if missing_packages:
+#         return missing_packages
+#     return None
 
 def fetch_required_packages(requirements_file):
     required_packages = []
