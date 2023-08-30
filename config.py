@@ -1,30 +1,22 @@
 # <config.py>
 import os
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from dotenv import load_dotenv
-from urllib.parse import quote_plus
+from utility import load_postgres_url_from_env, check_virtualenv, check_dependencies
+
+
+REQUIREMENTS_FILE = 'requirements.txt'
 
 POSTGRES_URL_BASE = ""
 
-def load_env_vars():
-    required_env_vars = ['POSTGRES_HOST', 'POSTGRES_PORT', 'POSTGRES_USER', 'POSTGRES_PASSWORD'] #'POSTGRES_DB_NAME', 
-
-    # Check if all required environment variables are set
-    for env_var in required_env_vars:
-        if os.environ.get(env_var) is None:
-            raise EnvironmentError(f"Required environment variable {env_var} is not set. Please see EXAMPLE.env and create .env accordingly")
-
-    load_dotenv()
-    HOST = os.environ.get("POSTGRES_HOST")
-    PORT = os.environ.get("POSTGRES_PORT")
-    USER = os.environ.get("POSTGRES_USER")
-    quoted_password = quote_plus(os.environ.get("POSTGRES_PASSWORD"))
-    PASSWORD = quoted_password
-    POSTGRES_URL_BASE = f"postgresql://{USER}:{PASSWORD}@{HOST}:{PORT}"
-
 class Config:
-    load_env_vars()
+    if not check_virtualenv():
+        raise EnvironmentError("Please activate your virtual environment. See README.md")
+
+    # missing_deps = check_dependencies(REQUIREMENTS_FILE)
+    # if missing_deps:
+    #     raise EnvironmentError(f"The following dependencies are missing: {', '.join(missing_deps)}. See README.md")
+    
+    POSTGRES_URL_BASE = load_postgres_url_from_env()
+    
     DEBUG = False
     TESTING = False
     SECRET_KEY = os.environ.get('SECRET_KEY', 'my_precious')
