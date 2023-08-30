@@ -1,4 +1,5 @@
 # <app.py>
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from config import configurations
@@ -22,7 +23,8 @@ def create_app(env='test_local'):
 def main():
     parser = argparse.ArgumentParser(description="ML Data Processing App")
     parser.add_argument("-e", choices=configurations.keys(), default="test_local", help="Choose an environment: ")
-
+    
+    
     args = parser.parse_args()
 
     env = args.e

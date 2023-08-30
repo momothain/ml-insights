@@ -4,7 +4,7 @@ new ml-service: Creates and updates a database in a Python Flask application wit
 ## Instructions
 ### create venv using requirements.txt
 ```
-python3 -m venv
+python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
