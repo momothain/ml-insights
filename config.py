@@ -24,20 +24,34 @@ class Config:
 class TestLocalConfig(Config):
     TESTING = True
     #LOCAL_SQLITE_URL
+    
     SQLALCHEMY_DATABASE_URI = "sqlite:///local_test.db"  
     
 class TestConfig(Config):
     TESTING = True
     # POSTGRES_URL
+    POSTGRES_URL_BASE = load_postgres_url_from_env()
     SQLALCHEMY_DATABASE_URI = POSTGRES_URL_BASE + "/testDB"
+
+    # Open a file in append mode ('a')
+    file_path = './postgres_url.txt'
+    data_to_append = "\nThis line will be appended to the file."
+
+    with open(file_path, 'a') as file:
+        file.write(SQLALCHEMY_DATABASE_URI)
+
+    print(SQLALCHEMY_DATABASE_URI)
+
     
 class DevelopmentConfig(Config):
     DEBUG = True
-    # POSTGRES_URL 
+    # POSTGRES_URL
+    POSTGRES_URL_BASE = load_postgres_url_from_env() 
     SQLALCHEMY_DATABASE_URI = POSTGRES_URL_BASE + "/developmentDB"
     
 class StageConfig(Config):
     # POSTGRES_URL 
+    POSTGRES_URL_BASE = load_postgres_url_from_env()
     SQLALCHEMY_DATABASE_URI = POSTGRES_URL_BASE + "/stageDB"
     
 class ProductionConfig(Config):

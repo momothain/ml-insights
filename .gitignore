@@ -66,5 +66,12 @@ Thumbs.db
 venv/
 venv
 *.venv
+
+#sensitive
 .env
+quoted-escaped.env
 .envrc
+postgres_url.txt
+
+#echo -e "\ntestechot" >> .gitignore
+#testechot
