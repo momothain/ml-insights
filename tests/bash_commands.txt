@@ -1,0 +1,2 @@
+pg_dump --dbname=developmentDB --host=34.145.26.239 --port=5432 --username=postgres --file=backup-developmentDB.sql
+psql --dbname=developmentDB --host=34.145.26.239 --port=5432 --username=postgres --file=backup-developmentDB.sql

@@ -72,6 +72,7 @@ venv
 quoted-escaped.env
 .envrc
 postgres_url.txt
+.pgpass
 
 #echo -e "\ntestechot" >> .gitignore
 #testechot
