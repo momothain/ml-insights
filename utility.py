@@ -18,8 +18,8 @@ def load_postgres_url_from_env():
             raise EnvironmentError(
                 f"Required environment variable {env_var} is not set. Please see EXAMPLE.env and create .env accordingly"
             )
-        else:
-            print(env_var + ": " + os.environ.get(env_var))
+        # else:
+            # print(env_var + ": " + os.environ.get(env_var))
 
     HOST = os.environ.get("PGHOST")
     PORT = os.environ.get("PGPORT")

@@ -14,3 +14,6 @@ https://instalily.slack.com/docs/T03AKM3LMGX/F05N944CQBF?focus_section_id=temp:C
 ```
 brew install postgresql@13
 ```
+
+## File Structure
+https://www.digitalocean.com/community/tutorials/how-to-structure-a-large-flask-application-with-flask-blueprints-and-flask-sqlalchemy

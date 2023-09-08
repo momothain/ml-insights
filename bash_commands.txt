@@ -1,2 +1,3 @@
 pg_dump --dbname=developmentDB --host=34.145.26.239 --port=5432 --username=postgres --file=backup-developmentDB.sql
 psql --dbname=developmentDB --host=34.145.26.239 --port=5432 --username=postgres --file=backup-developmentDB.sql
+sqlacodegen postgresql://postgres:sl\`FuuJu\"\;~kFrfg@34.145.26.239:5432/developmentDB > models/old-models.py
