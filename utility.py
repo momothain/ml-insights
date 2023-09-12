@@ -20,13 +20,18 @@ def load_postgres_url_from_env():
             )
         # else:
             # print(env_var + ": " + os.environ.get(env_var))
+    from urllib.parse import quote
+
+    password = os.environ.get("PGPASSWORD")
+    print(password)
+    encoded_password = quote(password)
+    print(encoded_password)
 
     HOST = os.environ.get("PGHOST")
     PORT = os.environ.get("PGPORT")
     USER = os.environ.get("PGUSER")
-    PASSWORD = quote_plus(os.environ.get("PGPASSWORD"))
+    PASSWORD = encoded_password
     POSTGRES_URL_BASE = f"postgresql://{USER}:{PASSWORD}@{HOST}:{PORT}"
-    print(POSTGRES_URL_BASE)
     return POSTGRES_URL_BASE
 
 

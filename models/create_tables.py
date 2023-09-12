@@ -1,26 +1,26 @@
-# <create_tables.py>
+import logging
+
+logging.basicConfig()
+logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
 
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import sys
 sys.path.append("..")
+
+# Import the models to make sure SQLAlchemy knows about them
 from models.models import MlTag, MlTagCategory, MlCluster, MlAd
+
 from database import db
 from config import configurations
-
 
 app = Flask(__name__)
 app.config.from_object(configurations['test'])
 
-# db = SQLAlchemy()
 db.init_app(app)
 
-with app.app_context():
-    db.create_all()
-
-    # Now, we insert some sample data:
-
+def p():
     # Create a tag category:
     tag_category_1 = MlTagCategory(ml_tag_category="Example Category 1")
 
@@ -46,5 +46,9 @@ with app.app_context():
     db.session.add(cluster_1)
     db.session.commit()
 
-# </create_tables.py>
 
+with app.app_context():
+    db.create_all()
+    db.session.commit()
+    p()
+# </create_tables.py>

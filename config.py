@@ -38,14 +38,14 @@ class TestConfig(Config):
     TESTING = True
     # POSTGRES_URL
     POSTGRES_URL_BASE = load_postgres_url_from_env()
-    DATABASE_NAME = "/test_ml_2023_09_08_B"
+    DATABASE_NAME = "/6"
     SQLALCHEMY_DATABASE_URI = POSTGRES_URL_BASE + DATABASE_NAME
 
     # Open a file in append mode ('a')
     file_path = "./postgres_url.txt"
 
     with open(file_path, "a") as file:
-        file.write(SQLALCHEMY_DATABASE_URI)
+        file.write("\n" + SQLALCHEMY_DATABASE_URI + "\n")
 
     print(SQLALCHEMY_DATABASE_URI)
 
