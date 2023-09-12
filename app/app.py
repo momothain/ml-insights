@@ -2,7 +2,7 @@
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from ml_insights.config import configurations
+from config import configurations
 import argparse
 
 

@@ -1,5 +1,6 @@
 # <models.py>
 from sqlalchemy import CheckConstraint
+import sys
 from ml_insights.database import db
 
 class MlTag(db.Model):

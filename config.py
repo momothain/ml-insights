@@ -1,6 +1,6 @@
 # <config.py>
 import os
-from ml_insights.utility import load_postgres_url_from_env, check_virtualenv  # , check_dependencies
+from utility import load_postgres_url_from_env, check_virtualenv  # , check_dependencies
 
 
 REQUIREMENTS_FILE = "requirements.txt"
@@ -31,14 +31,14 @@ class TestLocalConfig(Config):
     TESTING = True
     # LOCAL_SQLITE_URL
 
-    SQLALCHEMY_DATABASE_URI = "sqlite:///ltest.db"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///localtest.db"
 
 
 class TestConfig(Config):
     TESTING = True
     # POSTGRES_URL
     POSTGRES_URL_BASE = load_postgres_url_from_env()
-    DATABASE_NAME = "/6"
+    DATABASE_NAME = "/1"
     SQLALCHEMY_DATABASE_URI = POSTGRES_URL_BASE + DATABASE_NAME
 
     # Open a file in append mode ('a')

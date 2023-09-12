@@ -7,6 +7,10 @@ new ml-service: Creates and updates a database in a Python Flask application wit
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+pip install -e .
+flask run #run
+python app.app #alt run
+pytest #test
 ```
 
 ## Postgres

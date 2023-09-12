@@ -1,7 +1,7 @@
-import logging
-
-logging.basicConfig()
-logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
+# import logging
+#
+# logging.basicConfig()
+# logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
 
 import os
 from flask import Flask
@@ -10,7 +10,12 @@ import sys
 sys.path.append("..")
 
 # Import the models to make sure SQLAlchemy knows about them
-from models.models import MlTag, MlTagCategory, MlCluster, MlAd
+# import models.models
+# import models.visual_models
+# import models.audio_models
+from models.models import *
+# from models.audio_models import *
+# from models.visual_models import *
 
 from database import db
 from config import configurations
@@ -22,7 +27,7 @@ db.init_app(app)
 
 def p():
     # Create a tag category:
-    tag_category_1 = MlTagCategory(ml_tag_category="Example Category 1")
+    tag_category_1 = MlTagCategory(ml_tag_category="Example22 Category 1")
 
     # Create tags:
     tag_1 = MlTag(ml_tag="Sample Tag 1", ml_tag_category=tag_category_1, media_category="Media1", source_API="API1", shot_num=1)
@@ -50,5 +55,5 @@ def p():
 with app.app_context():
     db.create_all()
     db.session.commit()
-    p()
+    # p()
 # </create_tables.py>

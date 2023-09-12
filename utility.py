@@ -1,7 +1,5 @@
 import os
 from dotenv import load_dotenv
-from urllib.parse import quote_plus
-
 
 def load_postgres_url_from_env():
     load_dotenv()

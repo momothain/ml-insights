@@ -1,7 +1,7 @@
 # <ml_audio.py>
-from sqlalchemy import CheckConstraint
-from ml_insights.database import db
-from sqlalchemy.dialects.postgresql import ARRAY
+import sys
+sys.path.append("..")
+from database import db
 
 # store .mp4 together? = media URLs
 class MlVideo(db.Model):
