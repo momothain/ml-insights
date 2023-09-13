@@ -50,7 +50,7 @@ logs/
 *.log
 
 # PyCharm and other IDEs
-.idea/
+../.idea/
 .vscode/
 
 # OS generated files

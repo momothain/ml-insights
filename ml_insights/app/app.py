@@ -2,7 +2,7 @@
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from config import configurations
+from ml_insights.config import configurations
 import argparse
 
 
@@ -11,6 +11,8 @@ Flask application factory function
 https://flask.palletsprojects.com/en/2.2.x/patterns/appfactories/
 https://www.digitalocean.com/community/tutorials/how-to-structure-a-large-flask-application-with-flask-blueprints-and-flask-sqlalchemy
 """
+
+
 def create_app(env="test_local"):
     app = Flask(__name__)
     app.config.from_object(configurations[env])
