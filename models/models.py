@@ -32,6 +32,7 @@ class MlTagCategory(db.Model):
     ml_tag_category = db.Column(db.String(50), nullable=False, unique=True)
     ml_tags = db.relationship('MlTag', back_populates='ml_tag_category', cascade="all, delete-orphan")
 
+
 class MlCluster(db.Model):
     """ Represents a cluster of ML tags. """
     __tablename__ = 'ml_clusters'
